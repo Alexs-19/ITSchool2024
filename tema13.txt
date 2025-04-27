@@ -1,0 +1,577 @@
+1. Fie declaraţia:  int var,*pointer;. Verificaţi dacă expresia: (&pointer) are aceeaşi semnificaţie cu pointer   şi  &(var) are aceeaşi semnificaţie cu var. Cum explicaţi aceasta ?
+ 
+Aceste expresii nu au aceeași semnificație, deoarece &pointer și &(var) returnează adresele variabilelor pointer și var, pe când pointer și var sunt valori de tipul int* respectiv int.
+--------------------
+2. Fie declaraţia:  double d,*pd;. Să se decidă dacă variabilele d şi pd au aceeaşi dimensiune.
+
+Nu, variabilele nu au aceeași dimensiune.
+--------------------
+3. Considerăm declaraţiile :
+int n, const int a=10 ,
+    *pci=&a;
+Să se determine care dintre instrucţiuni sunt corecte :
+n=a;  a=2;
+n=*pci;  *pci=1;
+pci++;
+
+n = a; este corect
+n = *pci; este corect
+--------------------
+4. Fie declaraţiile :
+int n=10;  
+const *cpi=&n;
+Să se determine corectitudinea instrucţiunilor următoare :
+*cpi=1;  cpi=&n;
+cpi++;  n=cpi;
+
+cpi = &n; este corect
+--------------------
+5. Precizaţi ce tipăreşte programul următor :
+#include<stdio.h>
+long a[10]=
+{10,11,12,13,14,15,16,17,
+                     18,19};
+void main()
+{  long *pi;
+   for(pi=&a[0];pi<&a[10];
+                      pi++)
+       printf(“\n%p:%ld”,
+                   pi, *pi);
+}
+
+Programul tipareste adresele de memorie ale elementelor din tablou si valorile acestora
+--------------------
+6. Precizaţi ce face programul următor:
+#include<stdio.h>
+int a[10]=
+{10,11,12,13,14,15,16,17,
+                     18,19};
+void main()
+{  int *pi;
+   for(pi=a;pi<a+10;)
+      printf(“\n%p:%d”,   pi,  ++*pi++);
+}
+
+Programul afiseaza adresa de memorie si valoarea incrementata a fiecarui element din tablou
+--------------------
+7. Fie declaraţia :  int a[10][10];
+Care din expresiile următoare sunt echivalente?
+a) *a[i] 	b) **(a+i)	
+c) *(*a+i)  d) a[0][i]	
+e) a[i][0]
+
+a, b, e sunt echivalente
+--------------------
+8. Este corectă secvenţa char*s;gets(s); ?
+
+nu este corecta
+--------------------
+9. Explicaţi care din instrucţiuni sunt greşite în secvenţa următoare :
+char *s=”Test C”;
+*s=”Ansi C”;
+s=”Ansi C”;
+
+*s=”Ansi C”; este gresit
+--------------------
+10. Care dintre următoarele variante reprezintă o declaraţie corectă a unei variabile x de tipul “adresă a unei variabile întregi” ?
+a) int x*;	b) int *x;	
+c) int x;   d) int &x;	
+e) int x&;
+
+b este corect
+--------------------
+11. Se consideră declaraţia de variabile:
+int m, *x,*y;
+Care dintre următoarele atribuiri sunt corecte ?
+a) x=m;	b) *x=*m;	
+c) *y=*x;   d) y=&m;	
+e) y=x;
+
+c, d, e sunt corecte
+--------------------
+12. Fie declaraţiile de variabile:
+int a=2,b;  int *x,*y;
+Precizaţi ce valori se vor afişa, în ordine, în urma execuţiei secvenţei de program de mai jos:
+x=&a; a=5; printf(“%d”, *x);
+b=a-2; y=&b; b+=(*y)+4;
+printf(“%d”, b);
+*y=*x; printf(“%d”, *y); 
+if(x==y) putchar(‘1’); 
+else putchar(‘0’);
+a) 2,10,2,1	 b) 2,10,2,0
+c) 5,7,5,0   d) 5,10,5,0
+e) 5,10,5,1
+
+d) 5,10,5,0
+--------------------
+13. Se consideră următoarea secvenţă de program:
+int *q,**p,a=5,b=3;
+*p=&a;              // (1)
+q=*p;               // (2)
+b+=*(&(**p));       // (3)
+printf(“%d %d”,*q,b);  
+Ce puteţi spune despre atribuirile (1), (2) şi (3)?
+a) nici una dintre atribuiri nu este corectă
+b) numai atribuirea (1) este corectă
+c) numai atribuirile (1) şi (2) sunt corecte
+d) toate sunt corecte şi secvenţa afişează de două ori numărul 5
+e) toate atribuirile sunt corecte şi secvenţa afi-şează numerele 5 şi 8
+
+e) toate atribuirile sunt corecte şi secvenţa afi-şează numerele 5 şi 8
+--------------------
+14. Fie atribuirea : *y=&(*(&z)); Cum trebuie scrise corect declaraţiile de variabile, astfel încât atribuirea să fie corectă ?
+a) int *y,z;  b) int y,*z;
+c) int y,**z  d) int **y,z;
+e) int **y,*z;
+
+e) int **y,*z;
+--------------------
+15. Care dintre instrucţiunile (I),(II),(III),(IV) din programul următor sunt eronate? Precizaţi valorile obţinute în cazul instrucţiunilor corecte.
+#include<stdio.h>
+void main()
+{
+	const int x=3; 
+      int u,v;
+	x=4;                 // (I)
+	*(int*)&x=8;         // (II)
+	u=x;                 // (III)
+	v=*(int*)&x;         // (IV)
+}
+a)I	b)II	c)III d)IV
+e) nici una
+
+a) I, b) II, d) IV
+--------------------
+16. Alegeţi atribuirea corectă din programul de mai jos:
+void main()
+{
+	int a;   void *p;
+	p=(int*)&a;  // (I)
+	p=&a;	       // (II)
+	p=(float*)&a;// (III)
+	p=&(int*)a;	 // (IV)
+}
+a)I		b)II	    c)III
+d) IV		e) nici una
+
+a)I, b)II
+--------------------
+17. Fie declaraţiile de variabile:
+	int a=2,b,c=5;  
+      int *x,*y;
+Precizaţi ce valori se vor afişa, în ordine, în urma execuţiei secvenţei de program de mai jos:
+x=&c; a+=*x; printf(“%d”,a);
+b=++a; y=&b; 
+printf(“%d”,*y);
+ x=y;  printf(“%d”,(*x)++;
+a) 7,7,7	b) 7,8,9	
+c) 7,8,8   d) 7,7,8	
+e) 8,8,9
+
+c) 7,8,8
+--------------------
+18. Fie un pointer x către întreg. Care dintre instrucţiunile de ma jos realizează corect alocarea dinamică a memoriei ?
+a) x=(int)malloc(sizeof(int*));
+b) x=(int*)malloc(sizeof(int*));
+c) x=(int*)malloc(sizeof(int));
+d) *x=(int*)malloc(sizeof(int));
+e) *x=(int)malloc(sizeof(int*));
+
+c) x=(int*)malloc(sizeof(int));
+--------------------
+19. Fie următoarele declaraţii de variabile:
+	int **a,*b,c;
+Care dintre expresiile de mai jos vor genera eroare la execuţie?
+a) a=&(&c);	    b) b=&(**a);
+c) *a=&c;	    d)**a=&b; 
+e) *b=**a+c;
+
+a), d)
+--------------------
+20. Considerăm declaraţia: int **p;  
+şi atribuirea p=&q; Alegeţi varianta potrivită astfel încât atribuirea să aibă sens.
+a) int q;		b) int *q;
+c) int ***q;	d) int &q;
+e) nici una
+
+b)
+--------------------
+21. Precizaţi valoarea variabilei a ca urmare a execuţiei programului următor:
+void main()
+{
+	int a; char b=1;
+	a=*(int*)&b;
+}
+a)1   b)97  c) neprecizată
+d) nici una	     
+e) programul este greşit
+
+c)
+--------------------
+22. Precizaţi care dintre instrucţiunile de atribuire de mai jos face ca x să primească valoarea 0:
+void main()
+{
+	int a=1,b=2;  float x;
+	x=a/ *&b;    // (I)
+	x=(float) a/b; // (II)
+}
+a)I	 b)II	    c) ambele
+d) nici una	    e) programul este gresit
+
+a)
+--------------------
+23. Care dintre instrucţiunile de tipărire vor afişa aceeaşi valoare ?
+#include<stdio.h>
+void main()
+{
+int a=2,*p=&a;
+printf(“%d\n”,*p+1);
+printf(“%d\n”,*&p+1);
+printf(“%d\n”,*(p+1));
+printf(“%d\n”,*(&p+1));
+}
+a) prima şi a doua	
+b) a doua şi a treia
+c) a doua şi a patra	
+d) nici una
+e) programul este eronat
+
+d)
+--------------------
+24. În programul următor, care dintre cele patru instrucţiuni va tipări valoarea 11?
+#include<stdio.h>
+void main()
+{
+	const int x=2,y=3;
+	*(int*)&x=8;
+	*(int*)&y=9;
+	printf(„%d\n”,x+y);
+	printf(„%d\n”,
+               *(int*)&x+y;
+	printf(„%d\n”,
+               x+*(int*)&y;
+printf(„%d\n”,
+*(int*)&x+*(int*)&y;
+}
+a) prima	b) a doua	
+c) a treia  d) a patra	
+e) nici una
+
+e)
+--------------------
+25. Fie programul următor:
+#include<stdio.h>
+void main()
+{
+	int m[9],i;		
+	for(i=0;i<9;i++) 
+             m[i]=i;
+	while(i>0)
+	{   i--; *(m+i)=-i;  }
+}
+Care dintre afirmaţiile de mai jos sunt adevărate ?
+a) ambele cicluri sunt greşite
+b) numai primul ciclu este corect
+c) numai al doilea ciclu este corect	
+d) ambele cicluri sunt corecte
+e) în cele două cicluri, elementele vectorului vor primi valori egale în modul, dar de semne opuse
+
+d)
+--------------------
+26. Se consideră programul următor:
+#include<stdio.h>
+void main()
+{
+  int a=5,b=-12,c=7,*v[3];
+  v[0]=&a;	//(1)	          
+  printf(“%d\n”,*v[0]);//(2)
+  *(v+1)=&b; //(3)	
+  printf(“%d\n”,*(*(v+1))); //(4)
+  2[v]=&c;	//(5)	          
+  printf(“%d\n”,*v[2]);//(6)    
+}
+a) declaraţia vectorului este 
+   eronată
+a) atribuirile (1), (3)  şi (5) sunt toate corecte
+b) atribuirea (1) este corectă, iar (3) şi (5) sunt eronate
+c) atribuirile (1) şi (3) sunt corecte, iar (5) este eronată
+d) programul este corect şi afişează valorile 5, -12, 7
+
+d)
+--------------------
+27. Ce va afişa programul următor?
+#include<stdio.h>
+void main()
+{
+	int (*v)[3];
+      int u[]={10,11,12};
+	v=&u;
+	printf(“%d”,(*v)[1];
+}
+a) programul este eronat
+b) o adresă de memorie oarecare, fără nici-o semnificaţie
+c) valoarea întreagă 11	
+d) adresa de memorie la care se află valoarea întreagă 11
+e) adresa începând cu care se găseşte vectorul v în memorie
+
+c)
+--------------------
+28. Se consideră următoarea secvenţă de program:
+int a[9][11],i,j;
+for(i=0;i<9;i++)
+   for(j=0;j<11;j++)
+       if(i==j) 
+           (*(a+i)) [j]=0;
+       else *(*(a+i)+j)=i*j; 	
+Precizaţi care dintre afirmaţiile de mai jos sunt false:
+a) a[5][2] este 10	
+b) a[8][0] este 6	
+c) *(*(a+3)+3) este 0
+d) programul conţine erori de sintaxă
+e) matricea a este simetrică faţă de diagonala principală
+
+b), d) , e)
+--------------------
+29. Se consideră următoarele declaraţii de variabile:
+int q=6,d[3][4],(e[3])[4],v[4];
+int *a[3][4],(*b)[3][4],
+    (*c[3])[4];
+Care dintre atribuirile de mai jos sunt corecte?
+a) d[0][2]=e[1][3];	
+b) a[2][3]=&q;
+c) b=&d; 		d) c[2]=&v;	
+e) toate atribuirile ante-rioare
+
+a), b)
+--------------------
+30. Precizaţi ce valoare va afişa programul următor:
+#include<stdio.h>
+void main()
+{
+	int a[20][20],i,j,n=4;
+	for(i=0;i<n;i++)
+     	   for(j=0;j<n;j++)
+      *(*(a+i)+j)=(i>j)?
+             (j-i) : (j+i);
+	int m=10;
+	for(i=0;i<n;i++)
+     	   for(j=0;j<n;j++)
+          if(m>(*(a+i))[j])
+                  m=a[i][j];
+	printf(“%d”,m);
+}
+a) 10	  b)6  c) 3	   d) –3
+e) programul este eronat
+
+d)
+--------------------
+31. Fie vectorul y cu patru elemente numere întregi:
+	int y[4]={0,1,2,3};
+Care dintre următoarele instrucţiuni declară şi iniţializează corect un pointer ptr către vectorul y?
+a) int *(ptr[4])=&y;	
+b) int (ptr*)[4]=&y;
+c) int (*ptr)[4]=&y;	
+d) int ptr*[4]=&y;
+e) int *ptr[4]=&y;
+
+c)
+--------------------
+32. Fie următorul program:
+#include<stdio.h>
+void main()
+{
+	int u[4]={1,2,3,4},
+          v[4]={5,6,7,8},
+          w[4]={0,0,0,0}, i;
+	int (*x)[4]=&u,
+          (*y)[4]=&v,
+          (*z)[4]=&w;
+	for(i=0;i<4;i++)
+       printf(“%3d”,
+   (*z)[i]=(*x)[i]+(*y)[i]);
+}
+Care dintre afirmaţiile de mai jos sunt adevărate?
+a) programul va afişa patru adrese de memorie
+b) programul va afişa, în ordine, valorile 6,8, 10,12
+c) valoarea lui (*x)[2] este 3
+d) valoarea lui (*y)[4] este 8
+e) instrucţiunea de afişare din ciclu este eronată, din cauza folosirii operatorului de atribuire în funcţia printf
+
+b), c)
+--------------------
+33. Fie următorul program:
+#include<stdio.h>
+void main()
+{
+int x[4]={1,2,3},
+    y[4]={4,5,6,7},
+    z[7];
+int i,j;
+	for(i=0;i<4;i++)
+              *(z+i)=*(y+i);
+	for(j=0;j<3;j++)
+            *(z+i+j)=*(x+j);
+	for(i=0;i<7;i++)
+        printf(“%d”,*(z+i));
+}
+Care vor fi valorile afişate în urma execuţiei sale?
+a) 1,2,3,4,5,6,7	 
+b) 7,6,5,4,3,2,1
+c) 3,2,1,7,6,5,4   
+d) 4,5,6,7,1,2,3
+e) programul este eronat
+
+d)
+--------------------	
+34. Fie secvenţa de instrucţiuni:
+int x[]={10,20,30,40,50};
+int*ptr=x;
+printf(“%d\n”,*(ptr+2));
+printf(“%d\n”,*(ptr)+2);
+Ce se va tipări după executarea codului de mai sus?
+a)  30  30   	b) 30  12   
+c)  12  12	      d) 12  30
+
+b)
+--------------------
+35. Fie secvenţa de instrucţiuni:
+int *array[3];
+int(*ptr)[]=array;
+int x=2,y=3,z=4;
+Având în vedere codul de mai sus, cum veţi realiza atribuirea celui de al doilea pointer din şirul “ptr” ca să pointeze la valoarea lui y ?
+a) ptr[2]=&y;		
+b) (*ptr)[1]=y;	
+c) (*ptr)[1]=&y;		
+d) (*ptr)[2]=&y;
+
+c)
+--------------------
+36. Fie următoarea declaraţie de variabile :
+int *p;  int x,y;
+Atribuirea y=x+100; este echivalentă cu secvenţa:
+a) p=&x; y=*p+100; 	
+b) y=*p+100; p=&x;
+c) p=&y; y=*p+100; 	
+d) p=&x; y=&p+100;
+
+a)
+--------------------
+37. Fie următoarea declaraţie de variabile :
+int *p;  int x,y;
+Atribuirea x=y; este echivalentă cu secvenţa :
+a) p=&x; *p=y;	
+b) p=&y; *p=x;
+c) *p=x; p=&y;	
+d) *p=y; p=&x;
+
+a)
+--------------------
+38. Fie următoarea declaraţie de variabile :
+int *p;  int x,y;
+Instrucţiunea x++; este echivalentă cu secvenţa :
+a) p=&x; (*p)++;	
+b) p=*x; (&p)++;
+c) p=&x; *(p++);	
+d) p=&x; *p++;
+
+a)
+--------------------
+39. Fie următoarea declaraţie de variabile :
+int *p;  int x,y;  
+p=&x;
+Atribuirea y=x*(x+1); este echivalentă cu secvenţa :
+a) y=*p*((*p)++);	  
+b) y=*p*(*p++);
+c) y=*p**p++;	
+d) y=(*p)*(*p++);
+
+d)
+--------------------
+40. Fie următoarea declaraţie de variabile :
+int *p;  int x=100,y;  p=&x;
+În urma atribuirii y=*p*((*p)++);  y va avea valoarea :
+a) 10100    b) 11000    
+c) 10001    d) 10000
+
+
+--------------------
+41. Fie următoarea declaraţie de variabile :
+int *p;  int x=100, y;  p=&x;
+În urma atribuirii y=*p+((*p)++);  y va avea  valoarea :
+a) 201    b) 102   c) 200 
+d) 202
+
+d)
+--------------------
+42. Fie secvenţa :
+int t[5]={20,30,40,50,10};  
+int *p;  int x;
+Atribuirea x=t[3]; este echivalentă cu :
+a) p=t; x=*(p+3);	
+b) p=&t[0]; x=*(p+2);
+c) p=*t; x=*p+3;		
+d) p=t; x=*p+3;
+
+a)
+--------------------
+43. Fie secvenţa :
+int t[5]={20,30,40,50,10}; 
+int *p;  int x;
+Atribuirea x=*(&t[0]+3);  este echivalentă cu :
+a) x=t[3];	   b) x=t[4];
+c) x=*(&t[2]); d) x=*(t+4);
+
+d)
+--------------------
+44. Se consideră secvenţa de program:
+void main(void)
+{  int *p, *q;
+ p=(int*)malloc
+        (sizeof(int));
+ q=(int*)malloc
+        (sizeof(int));
+    *p=5; *q=3; *p=*q;
+    if(p==q) *p+=1;
+    printf(“%d”,*p);
+}
+Care este valoarea afişată pentru p :
+a) 5  b) 3    c)6    d)4
+
+b)
+--------------------
+45. Se dă următoarea secventă de cod:
+int a[5]={1,2,3,4,5};
+int *aPtr;
+aPtr=a;
+printf(“element=%d\n”,
+              *(aPtr+2));
+Ce va afişa codul de mai sus după execuţie ?
+a) element=1	
+b) element=2
+c) element=3	
+d) element=4
+
+c)
+--------------------
+46. Se dă codul:
+int *ptr; int y[10];
+int i;
+for(i=0;i<10;i++) y[i]=i;
+ptr=y; ptr+=8;
+printf(“ptr=%d\n”, *ptr);
+Ce se va afişa când codul este executat ?
+a) ptr=0		b) ptr=9
+c) ptr=7		d) ptr=8
+
+d)
+--------------------
+
+47.Se dă o matrice mat cu m≥1 linii și  n≥1 coloane, având toate elementele distincte. Să se interschimbe liniile pe care se află cel mai mic și respectiv cel mai mare element din matrice.
+
+
+--------------------
+48.Se dă o matrice mat cu m≥1 linii și n≥1 coloane. Să se rotească cu 90grade în sensul acelor de ceasornic matricea dată.
+
+
+
+
