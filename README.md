@@ -1,4 +1,4 @@
-![🃏_Blackjack_Game_(C++) (1)](https://github.com/user-attachments/assets/4dad38f6-3024-4f85-a69f-1eea56e520cc)
+![blackjack banner](https://github.com/user-attachments/assets/f120b922-edd8-4b09-a89e-a27b9b6079fd)
 
 **Welcome to the Blackjack game! A C++ console game where you play against the dealer. Bet, hit, and stand your way to victory!**
 
