@@ -31,7 +31,7 @@ void saveBalance(double balance) {
 
 // load stats (player - dealer wins)
 void loadStats(int& playerWins, int& dealerWins) {
-    std::ifstream file("stats.txt");
+    ifstream file("stats.txt");
     playerWins = 0;
     dealerWins = 0;
     if (file.is_open()) {
@@ -42,7 +42,7 @@ void loadStats(int& playerWins, int& dealerWins) {
 
 //save stats
 void saveStats(int playerWins, int dealerWins) {
-    std::ofstream file("stats.txt");
+    ofstream file("stats.txt");
     if (file.is_open()) {
         file << playerWins << " " << dealerWins;
         file.close();
